@@ -2,15 +2,15 @@ package com.boke.handler;
 
 import com.alibaba.fastjson.JSON;
 import com.boke.constant.CommonConstant;
-import com.boke.strategy.UserDetailsDTO;
+import com.boke.model.dto.UserDetailsDTO;
 import com.boke.model.dto.UserInfoDTO;
 import com.boke.entity.UserAuth;
 import com.boke.mapper.UserAuthMapper;
 import com.boke.service.TokenService;
-import com.boke.strategy.UserUtil;
 import com.boke.util.BeanCopyUtil;
 
 import com.boke.model.vo.ResultVO;
+import com.boke.util.UserUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.security.core.Authentication;

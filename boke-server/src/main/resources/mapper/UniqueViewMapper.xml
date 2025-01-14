@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.aurora.mapper.UniqueViewMapper">
-    <select id="listUniqueViews" resultType="com.aurora.model.dto.UniqueViewDTO">
+<mapper namespace="com.boke.mapper.UniqueViewMapper">
+    <select id="listUniqueViews" resultType="com.boke.model.dto.UniqueViewDTO">
         SELECT DATE_FORMAT(create_time, "%Y-%m-%d") as `day`,
                views_count
         FROM `t_unique_view`

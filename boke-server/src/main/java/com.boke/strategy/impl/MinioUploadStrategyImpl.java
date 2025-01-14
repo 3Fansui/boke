@@ -39,7 +39,7 @@ public class MinioUploadStrategyImpl extends AbstractUploadStrategyImpl {
 
     @Override
     public String getFileAccessUrl(String filePath) {
-        return minioProperties.getUrl() + filePath;
+        return minioProperties.getUrl() +minioProperties.getBucketName()+"/"+ filePath;
     }
 
     private MinioClient getMinioClient() {

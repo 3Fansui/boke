@@ -9,7 +9,7 @@ import com.boke.service.ArticleService;
 import com.boke.service.UserInfoService;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
-import com.boke.strategy.EmailUtil;
+import com.boke.util.EmailUtil;
 import org.springframework.amqp.rabbit.annotation.RabbitHandler;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.beans.factory.annotation.Autowired;

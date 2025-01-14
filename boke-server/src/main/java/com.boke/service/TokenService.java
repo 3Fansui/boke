@@ -1,6 +1,6 @@
 package com.boke.service;
 
-import com.boke.strategy.UserDetailsDTO;
+import com.boke.model.dto.UserDetailsDTO;
 import io.jsonwebtoken.Claims;
 
 import javax.servlet.http.HttpServletRequest;

@@ -1,6 +1,6 @@
 package com.boke.service.impl;
 
-import com.boke.strategy.UserDetailsDTO;
+import com.boke.model.dto.UserDetailsDTO;
 import com.boke.service.RedisService;
 import com.boke.service.TokenService;
 import io.jsonwebtoken.Claims;

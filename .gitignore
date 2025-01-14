@@ -1,0 +1,6 @@
+# IntelliJ IDEA
+.idea/
+*.iml
+
+# 忽略模块下的yml配置文件
+boke-server/**/*.yml

@@ -11,7 +11,6 @@ import com.boke.mapper.CommentMapper;
 import com.boke.mapper.TalkMapper;
 import com.boke.service.TalkService;
 
-import com.boke.strategy.UserUtil;
 import com.boke.util.BeanCopyUtil;
 import com.boke.util.CommonUtil;
 import com.boke.util.PageUtil;
@@ -21,6 +20,7 @@ import com.boke.model.dto.PageResultDTO;
 import com.boke.model.vo.TalkVO;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.boke.util.UserUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

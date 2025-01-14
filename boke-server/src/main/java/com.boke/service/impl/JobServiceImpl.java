@@ -6,7 +6,7 @@ import com.boke.entity.Job;
 import com.boke.mapper.JobMapper;
 import com.boke.model.dto.PageResultDTO;
 import com.boke.service.JobService;
-import com.boke.strategy.ScheduleUtil;
+import com.boke.util.ScheduleUtil;
 import com.boke.util.BeanCopyUtil;
 import com.boke.util.CronUtil;
 import com.boke.util.PageUtil;

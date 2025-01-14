@@ -24,7 +24,7 @@ public class swagger {
                 .host("https://www.linhaojun.top")
                 .apiInfo(apiInfo())
                 .select()
-                .apis(RequestHandlerSelectors.basePackage("com.aurora.controller"))
+                .apis(RequestHandlerSelectors.basePackage("com.boke.controller"))
                 .paths(PathSelectors.any())
                 .build();
     }

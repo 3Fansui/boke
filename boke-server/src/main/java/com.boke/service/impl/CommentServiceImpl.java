@@ -14,7 +14,6 @@ import com.boke.mapper.TalkMapper;
 import com.boke.mapper.UserInfoMapper;
 import com.boke.service.bokeInfoService;
 import com.boke.service.CommentService;
-import com.boke.strategy.UserUtil;
 import com.boke.util.HTMLUtil;
 import com.boke.util.PageUtil;
 
@@ -26,6 +25,7 @@ import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.toolkit.CollectionUtils;
 import com.baomidou.mybatisplus.core.toolkit.StringUtils;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.boke.util.UserUtil;
 import lombok.SneakyThrows;
 import org.springframework.amqp.core.Message;
 import org.springframework.amqp.core.MessageProperties;

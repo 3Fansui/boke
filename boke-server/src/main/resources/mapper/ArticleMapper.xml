@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.aurora.mapper.ArticleMapper">
-    <resultMap id="ArticleCardDTOResultMap" type="com.aurora.model.dto.ArticleCardDTO">
+<mapper namespace="com.boke.mapper.ArticleMapper">
+    <resultMap id="ArticleCardDTOResultMap" type="com.boke.model.dto.ArticleCardDTO">
         <id property="id" column="id"/>
         <result property="articleCover" column="article_cover"/>
         <result property="articleTitle" column="article_title"/>
@@ -12,16 +12,16 @@
         <result property="createTime" column="create_time"/>
         <result property="updateTime" column="update_time"/>
         <result property="categoryName" column="category_name"/>
-        <association property="author" javaType="com.aurora.entity.UserInfo">
+        <association property="author" javaType="com.boke.entity.UserInfo">
             <result property="nickname" column="author_nickname"/>
             <result property="website" column="author_website"/>
             <result property="avatar" column="author_avatar"/>
         </association>
-        <collection property="tags" ofType="com.aurora.entity.Tag">
+        <collection property="tags" ofType="com.boke.entity.Tag">
             <result property="tagName" column="tag_name"/>
         </collection>
     </resultMap>
-    <resultMap id="ArticleDTOResultMap" type="com.aurora.model.dto.ArticleDTO">
+    <resultMap id="ArticleDTOResultMap" type="com.boke.model.dto.ArticleDTO">
         <id property="id" column="id"/>
         <result property="articleCover" column="article_cover"/>
         <result property="articleTitle" column="article_title"/>
@@ -33,16 +33,16 @@
         <result property="categoryName" column="category_name"/>
         <result property="type" column="type"/>
         <result property="originalUrl" column="original_url"/>
-        <association property="author" javaType="com.aurora.entity.UserInfo">
+        <association property="author" javaType="com.boke.entity.UserInfo">
             <result property="nickname" column="author_nickname"/>
             <result property="website" column="author_website"/>
             <result property="avatar" column="author_avatar"/>
         </association>
-        <collection property="tags" ofType="com.aurora.entity.Tag">
+        <collection property="tags" ofType="com.boke.entity.Tag">
             <result property="tagName" column="tag_name"/>
         </collection>
     </resultMap>
-    <resultMap id="articleAdminResultMap" type="com.aurora.model.dto.ArticleAdminDTO">
+    <resultMap id="articleAdminResultMap" type="com.boke.model.dto.ArticleAdminDTO">
         <id property="id" column="id"/>
         <result property="articleCover" column="article_cover"/>
         <result property="articleTitle" column="article_title"/>
@@ -53,7 +53,7 @@
         <result property="type" column="type"/>
         <result property="createTime" column="create_time"/>
         <result property="categoryName" column="category_name"/>
-        <collection property="tagDTOs" ofType="com.aurora.model.dto.TagDTO">
+        <collection property="tagDTOs" ofType="com.boke.model.dto.TagDTO">
             <id column="tag_id" property="id"/>
             <result column="tag_name" property="tagName"/>
         </collection>
@@ -402,7 +402,7 @@
           and status in (1, 2)
         LIMIT #{current} , #{size}
     </select>
-    <select id="listArchives" resultType="com.aurora.model.dto.ArticleCardDTO">
+    <select id="listArchives" resultType="com.boke.model.dto.ArticleCardDTO">
         SELECT id,
                article_title,
                if(article_abstract is null or article_abstract = '', SUBSTR(article_content, 1, 500),
@@ -509,7 +509,7 @@
         is_featured DESC,
         a.id DESC
     </select>
-    <select id="listArticleStatistics" resultType="com.aurora.model.dto.ArticleStatisticsDTO">
+    <select id="listArticleStatistics" resultType="com.boke.model.dto.ArticleStatisticsDTO">
         SELECT DATE_FORMAT(create_time, "%Y-%m-%d") AS date,
                COUNT(1)                             AS count
         FROM t_article

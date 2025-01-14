@@ -4,7 +4,7 @@ import com.boke.model.dto.SocialTokenDTO;
 import com.boke.model.dto.SocialUserInfoDTO;
 import com.boke.enums.RoleEnum;
 import com.boke.exception.BizException;
-import com.boke.strategy.UserDetailsDTO;
+import com.boke.model.dto.UserDetailsDTO;
 import com.boke.model.dto.UserInfoDTO;
 import com.boke.entity.UserAuth;
 import com.boke.entity.UserInfo;

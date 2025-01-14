@@ -1,10 +1,10 @@
 package com.boke.filter;
 
 
-import com.boke.strategy.UserDetailsDTO;
+import com.boke.model.dto.UserDetailsDTO;
 import com.boke.service.TokenService;
 
-import com.boke.strategy.UserUtil;
+import com.boke.util.UserUtil;
 import lombok.SneakyThrows;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;

@@ -1,7 +1,7 @@
 package com.boke.service.impl;
 
 import com.boke.model.dto.PageResultDTO;
-import com.boke.strategy.UserDetailsDTO;
+import com.boke.model.dto.UserDetailsDTO;
 import com.boke.model.dto.UserInfoDTO;
 import com.boke.model.dto.UserOnlineDTO;
 import com.boke.entity.UserAuth;
@@ -15,13 +15,13 @@ import com.boke.service.RedisService;
 import com.boke.service.TokenService;
 import com.boke.service.UserInfoService;
 import com.boke.service.UserRoleService;
-import com.boke.strategy.UserUtil;
 import com.boke.strategy.context.UploadStrategyContext;
 import com.boke.util.BeanCopyUtil;
 
 import com.boke.model.vo.*;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.boke.util.UserUtil;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

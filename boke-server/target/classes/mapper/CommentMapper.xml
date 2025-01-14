@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.aurora.mapper.CommentMapper">
-    <select id="listComments" resultType="com.aurora.model.dto.CommentDTO">
+<mapper namespace="com.boke.mapper.CommentMapper">
+    <select id="listComments" resultType="com.boke.model.dto.CommentDTO">
         SELECT
         u.nickname,
         u.avatar,
@@ -25,7 +25,7 @@
         c.id DESC
         LIMIT #{current},#{size}
     </select>
-    <select id="listReplies" resultType="com.aurora.model.dto.ReplyDTO">
+    <select id="listReplies" resultType="com.boke.model.dto.ReplyDTO">
         SELECT
         *
         FROM
@@ -59,7 +59,7 @@
         order by c.create_time desc
         ) t
     </select>
-    <select id="listTopSixComments" resultType="com.aurora.model.dto.CommentDTO">
+    <select id="listTopSixComments" resultType="com.boke.model.dto.CommentDTO">
         SELECT u.nickname,
                u.avatar,
                u.website,
@@ -91,7 +91,7 @@
             </if>
         </where>
     </select>
-    <select id="listCommentsAdmin" resultType="com.aurora.model.dto.CommentAdminDTO">
+    <select id="listCommentsAdmin" resultType="com.boke.model.dto.CommentAdminDTO">
         SELECT
         c.id,
         u.avatar,
@@ -122,7 +122,7 @@
         id DESC
         LIMIT #{current},#{size}
     </select>
-    <select id="listCommentCountByTypeAndTopicIds" resultType="com.aurora.model.dto.CommentCountDTO">
+    <select id="listCommentCountByTypeAndTopicIds" resultType="com.boke.model.dto.CommentCountDTO">
         SELECT
         topic_id as id,
         COUNT( 1 ) AS comment_count
@@ -137,7 +137,7 @@
         GROUP BY
         topic_id
     </select>
-    <select id="listCommentCountByTypeAndTopicId" resultType="com.aurora.model.dto.CommentCountDTO">
+    <select id="listCommentCountByTypeAndTopicId" resultType="com.boke.model.dto.CommentCountDTO">
         SELECT topic_id as id,
                COUNT(1) AS comment_count
         FROM t_comment

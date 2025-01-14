@@ -1,7 +1,6 @@
 package com.boke.util;
 
 import com.baomidou.mybatisplus.core.toolkit.StringUtils;
-import lombok.extern.log4j.Log4j2;
 import org.apache.commons.codec.binary.Hex;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -9,7 +8,7 @@ import java.io.*;
 import java.security.MessageDigest;
 import java.util.Objects;
 
-@Log4j2
+
 public class FileUtil {
 
     public static String getMd5(InputStream inputStream) {

@@ -7,13 +7,14 @@ import com.boke.model.dto.ArticleStatisticsDTO;
 import com.boke.entity.Article;
 import com.boke.model.vo.ConditionVO;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
 
-@Repository
+@Mapper
 public interface ArticleMapper extends BaseMapper<Article> {
 
     List<ArticleCardDTO> listTopAndFeaturedArticles();

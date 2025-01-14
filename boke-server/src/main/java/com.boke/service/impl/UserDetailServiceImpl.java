@@ -1,7 +1,7 @@
 package com.boke.service.impl;
 
 
-import com.boke.strategy.UserDetailsDTO;
+import com.boke.model.dto.UserDetailsDTO;
 import com.boke.entity.UserAuth;
 import com.boke.entity.UserInfo;
 import com.boke.exception.BizException;

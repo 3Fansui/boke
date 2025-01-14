@@ -2,6 +2,7 @@ package com.boke.util;
 
 import com.boke.constant.CommonConstant;
 import eu.bitwalker.useragentutils.UserAgent;
+
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.lionsoul.ip2region.DataBlock;
@@ -63,7 +64,7 @@ public class IpUtil {
 
     @PostConstruct
     private void initIp2regionResource() throws Exception {
-        InputStream inputStream = new ClassPathResource("/ip/ip2region.db").getInputStream();
+        InputStream inputStream = new ClassPathResource("/ip/ip2region.xdb").getInputStream();
         byte[] dbBinStr = FileCopyUtils.copyToByteArray(inputStream);
         DbConfig dbConfig = new DbConfig();
         searcher = new DbSearcher(dbConfig, dbBinStr);

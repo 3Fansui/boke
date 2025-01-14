@@ -9,7 +9,6 @@ import com.boke.exception.BizException;
 import com.boke.mapper.MenuMapper;
 import com.boke.mapper.RoleMenuMapper;
 import com.boke.service.MenuService;
-import com.boke.strategy.UserUtil;
 import com.boke.util.BeanCopyUtil;
 
 import com.boke.model.vo.ConditionVO;
@@ -18,6 +17,7 @@ import com.boke.model.vo.MenuVO;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.toolkit.CollectionUtils;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.boke.util.UserUtil;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

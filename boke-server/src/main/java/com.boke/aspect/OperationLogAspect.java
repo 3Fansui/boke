@@ -4,9 +4,9 @@ import com.alibaba.fastjson.JSON;
 import com.boke.annotation.OptLog;
 import com.boke.entity.OperationLog;
 import com.boke.event.OperationLogEvent;
-import com.boke.strategy.UserUtil;
 import com.boke.util.IpUtil;
 
+import com.boke.util.UserUtil;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.aspectj.lang.JoinPoint;

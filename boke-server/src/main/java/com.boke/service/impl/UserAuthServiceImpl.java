@@ -16,7 +16,6 @@ import com.boke.service.bokeInfoService;
 import com.boke.service.RedisService;
 import com.boke.service.TokenService;
 import com.boke.service.UserAuthService;
-import com.boke.strategy.UserUtil;
 import com.boke.strategy.context.SocialLoginStrategyContext;
 import com.boke.util.PageUtil;
 
@@ -24,6 +23,7 @@ import com.boke.model.vo.*;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.update.LambdaUpdateWrapper;
 import com.baomidou.mybatisplus.core.toolkit.IdWorker;
+import com.boke.util.UserUtil;
 import lombok.SneakyThrows;
 import org.springframework.amqp.core.Message;
 import org.springframework.amqp.core.MessageProperties;
