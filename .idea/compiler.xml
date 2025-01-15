@@ -7,15 +7,11 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="boke-Msg" />
-        <module name="boke-msg" />
         <module name="boke-common" />
+        <module name="boke-msg" />
         <module name="boke-Api" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="boke-pojo" target="1.8" />
-      <module name="boke-server" target="1.8" />
-    </bytecodeTargetLevel>
+    <bytecodeTargetLevel target="8" />
   </component>
 </project>

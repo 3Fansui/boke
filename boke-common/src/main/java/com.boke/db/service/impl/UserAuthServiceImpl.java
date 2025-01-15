@@ -42,6 +42,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.*;
 import java.util.stream.Collectors;
 
+import static com.boke.enums.UserAreaTypeEnum.getUserAreaType;
 import static com.boke.util.CommonUtil.checkEmail;
 import static com.boke.util.CommonUtil.getRandomCode;
 
@@ -95,14 +96,14 @@ public class UserAuthServiceImpl implements UserAuthService {
     @SuppressWarnings("unchecked")
     public List<UserAreaDTO> listUserAreas(ConditionVO conditionVO) {
         List<UserAreaDTO> userAreaDTOs = new ArrayList<>();
-        switch (Objects.requireNonNull(UserAreaTypeEnum.getUserAreaType(conditionVO.getType()))) {
-            case UserAreaTypeEnum.USER:
+        switch (Objects.requireNonNull(getUserAreaType(conditionVO.getType()))) {
+            case USER:
                 Object userArea = redisService.get(RedisConstant.USER_AREA);
                 if (Objects.nonNull(userArea)) {
                     userAreaDTOs = JSON.parseObject(userArea.toString(), List.class);
                 }
                 return userAreaDTOs;
-            case UserAreaTypeEnum.VISITOR:
+            case VISITOR:
                 Map<String, Object> visitorArea = redisService.hGetAll(RedisConstant.VISITOR_AREA);
                 if (Objects.nonNull(visitorArea)) {
                     userAreaDTOs = visitorArea.entrySet().stream()

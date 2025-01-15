@@ -7,7 +7,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.web.client.RestTemplate;
 
 @SpringBootApplication
-@MapperScan("com.boke.mapper")
+@MapperScan("com.boke.db.mapper")
 public class bokeSpringbootApplication {
 
     public static void main(String[] args) {

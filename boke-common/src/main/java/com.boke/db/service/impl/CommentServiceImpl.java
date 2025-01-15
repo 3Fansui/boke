@@ -41,6 +41,8 @@ import java.util.*;
 import java.util.concurrent.CompletableFuture;
 import java.util.stream.Collectors;
 
+import static com.boke.enums.CommentTypeEnum.getCommentEnum;
+
 @Service
 public class CommentServiceImpl extends ServiceImpl<CommentMapper, Comment> implements CommentService {
 
@@ -153,17 +155,17 @@ public class CommentServiceImpl extends ServiceImpl<CommentMapper, Comment> impl
         if (!types.contains(commentVO.getType())) {
             throw new BizException("参数校验异常");
         }
-        if (Objects.requireNonNull(CommentTypeEnum.getCommentEnum(commentVO.getType())) == CommentTypeEnum.ARTICLE || Objects.requireNonNull(CommentTypeEnum.getCommentEnum(commentVO.getType())) == CommentTypeEnum.TALK) {
+        if (Objects.requireNonNull(getCommentEnum(commentVO.getType())) == CommentTypeEnum.ARTICLE || Objects.requireNonNull(getCommentEnum(commentVO.getType())) == CommentTypeEnum.TALK) {
             if (Objects.isNull(commentVO.getTopicId())) {
                 throw new BizException("参数校验异常");
             } else {
-                if (Objects.requireNonNull(CommentTypeEnum.getCommentEnum(commentVO.getType())) == CommentTypeEnum.ARTICLE) {
+                if (Objects.requireNonNull(getCommentEnum(commentVO.getType())) == CommentTypeEnum.ARTICLE) {
                     Article article = articleMapper.selectOne(new LambdaQueryWrapper<Article>().select(Article::getId, Article::getUserId).eq(Article::getId, commentVO.getTopicId()));
                     if (Objects.isNull(article)) {
                         throw new BizException("参数校验异常");
                     }
                 }
-                if (Objects.requireNonNull(CommentTypeEnum.getCommentEnum(commentVO.getType())) == CommentTypeEnum.TALK) {
+                if (Objects.requireNonNull(getCommentEnum(commentVO.getType())) == CommentTypeEnum.TALK) {
                     Talk talk = talkMapper.selectOne(new LambdaQueryWrapper<Talk>().select(Talk::getId, Talk::getUserId).eq(Talk::getId, commentVO.getTopicId()));
                     if (Objects.isNull(talk)) {
                         throw new BizException("参数校验异常");
@@ -171,9 +173,9 @@ public class CommentServiceImpl extends ServiceImpl<CommentMapper, Comment> impl
                 }
             }
         }
-        if (Objects.requireNonNull(CommentTypeEnum.getCommentEnum(commentVO.getType())) == CommentTypeEnum.LINK
-                || Objects.requireNonNull(CommentTypeEnum.getCommentEnum(commentVO.getType())) == CommentTypeEnum.ABOUT
-                || Objects.requireNonNull(CommentTypeEnum.getCommentEnum(commentVO.getType())) == CommentTypeEnum.MESSAGE) {
+        if (Objects.requireNonNull(getCommentEnum(commentVO.getType())) == CommentTypeEnum.LINK
+                || Objects.requireNonNull(getCommentEnum(commentVO.getType())) == CommentTypeEnum.ABOUT
+                || Objects.requireNonNull(getCommentEnum(commentVO.getType())) == CommentTypeEnum.MESSAGE) {
             if (Objects.nonNull(commentVO.getTopicId())) {
                 throw new BizException("参数校验异常");
             }
@@ -226,7 +228,7 @@ public class CommentServiceImpl extends ServiceImpl<CommentMapper, Comment> impl
                 Map<String, Object> map = new HashMap<>();
                 String topicId = Objects.nonNull(comment.getTopicId()) ? comment.getTopicId().toString() : "";
                 String url = websiteUrl + CommentTypeEnum.getCommentPath(comment.getType()) + topicId;
-                map.put("content", userInfo.getNickname() + "在" + Objects.requireNonNull(CommentTypeEnum.getCommentEnum(comment.getType())).getDesc()
+                map.put("content", userInfo.getNickname() + "在" + Objects.requireNonNull(getCommentEnum(comment.getType())).getDesc()
                         + "的评论区@了你，"
                         + "<a style=\"text-decoration:none;color:#12addb\" href=\"" + url + "\">点击查看</a>");
                 EmailDTO emailDTO = EmailDTO.builder()
@@ -247,20 +249,20 @@ public class CommentServiceImpl extends ServiceImpl<CommentMapper, Comment> impl
         if (Objects.nonNull(comment.getReplyUserId())) {
             userId = comment.getReplyUserId();
         } else {
-            switch (Objects.requireNonNull(CommentTypeEnum.getCommentEnum(comment.getType()))) {
-                case CommentTypeEnum.ARTICLE:
+            switch (Objects.requireNonNull(getCommentEnum(comment.getType()))) {
+                case ARTICLE:
                     userId = articleMapper.selectById(comment.getTopicId()).getUserId();
                     break;
-                case CommentTypeEnum.TALK:
+                case TALK:
                     userId = talkMapper.selectById(comment.getTopicId()).getUserId();
                 default:
                     break;
             }
         }
-        if (Objects.requireNonNull(CommentTypeEnum.getCommentEnum(comment.getType())).equals(CommentTypeEnum.ARTICLE)) {
+        if (Objects.requireNonNull(getCommentEnum(comment.getType())).equals(CommentTypeEnum.ARTICLE)) {
             title = articleMapper.selectById(comment.getTopicId()).getArticleTitle();
         } else {
-            title = Objects.requireNonNull(CommentTypeEnum.getCommentEnum(comment.getType())).getDesc();
+            title = Objects.requireNonNull(getCommentEnum(comment.getType())).getDesc();
         }
         UserInfo userInfo = userInfoMapper.selectById(userId);
         if (StringUtils.isNotBlank(userInfo.getEmail())) {

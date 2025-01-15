@@ -64,7 +64,7 @@ public class IpUtil {
 
     @PostConstruct
     private void initIp2regionResource() throws Exception {
-        InputStream inputStream = new ClassPathResource("/ip/ip2region.xdb").getInputStream();
+        InputStream inputStream = new ClassPathResource("/ip/ip2region.db").getInputStream();
         byte[] dbBinStr = FileCopyUtils.copyToByteArray(inputStream);
         DbConfig dbConfig = new DbConfig();
         searcher = new DbSearcher(dbConfig, dbBinStr);
