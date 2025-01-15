@@ -1,0 +1,26 @@
+server:
+  port: 8082
+
+spring:
+  application:
+    name: boke-msg
+
+  # 数据库配置
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/boke?serverTimezone=Asia/Shanghai
+    username: root
+    password: root
+
+  # RabbitMQ配置
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
+
+  # Quartz配置
+  quartz:
+    job-store-type: jdbc
+    properties:
+      org.quartz.jobStore.isClustered: true

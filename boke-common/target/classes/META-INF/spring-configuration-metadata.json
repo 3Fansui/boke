@@ -1,0 +1,87 @@
+{
+  "groups": [
+    {
+      "name": "qq",
+      "type": "com.boke.config.properties.QQConfigProperties",
+      "sourceType": "com.boke.config.properties.QQConfigProperties"
+    },
+    {
+      "name": "upload.minio",
+      "type": "com.boke.config.properties.MinioProperties",
+      "sourceType": "com.boke.config.properties.MinioProperties"
+    },
+    {
+      "name": "upload.oss",
+      "type": "com.boke.config.properties.OssConfigProperties",
+      "sourceType": "com.boke.config.properties.OssConfigProperties"
+    }
+  ],
+  "properties": [
+    {
+      "name": "qq.app-id",
+      "type": "java.lang.String",
+      "sourceType": "com.boke.config.properties.QQConfigProperties"
+    },
+    {
+      "name": "qq.check-token-url",
+      "type": "java.lang.String",
+      "sourceType": "com.boke.config.properties.QQConfigProperties"
+    },
+    {
+      "name": "qq.user-info-url",
+      "type": "java.lang.String",
+      "sourceType": "com.boke.config.properties.QQConfigProperties"
+    },
+    {
+      "name": "upload.minio.access-key",
+      "type": "java.lang.String",
+      "sourceType": "com.boke.config.properties.MinioProperties"
+    },
+    {
+      "name": "upload.minio.bucket-name",
+      "type": "java.lang.String",
+      "sourceType": "com.boke.config.properties.MinioProperties"
+    },
+    {
+      "name": "upload.minio.endpoint",
+      "type": "java.lang.String",
+      "sourceType": "com.boke.config.properties.MinioProperties"
+    },
+    {
+      "name": "upload.minio.secret-key",
+      "type": "java.lang.String",
+      "sourceType": "com.boke.config.properties.MinioProperties"
+    },
+    {
+      "name": "upload.minio.url",
+      "type": "java.lang.String",
+      "sourceType": "com.boke.config.properties.MinioProperties"
+    },
+    {
+      "name": "upload.oss.access-key-id",
+      "type": "java.lang.String",
+      "sourceType": "com.boke.config.properties.OssConfigProperties"
+    },
+    {
+      "name": "upload.oss.access-key-secret",
+      "type": "java.lang.String",
+      "sourceType": "com.boke.config.properties.OssConfigProperties"
+    },
+    {
+      "name": "upload.oss.bucket-name",
+      "type": "java.lang.String",
+      "sourceType": "com.boke.config.properties.OssConfigProperties"
+    },
+    {
+      "name": "upload.oss.endpoint",
+      "type": "java.lang.String",
+      "sourceType": "com.boke.config.properties.OssConfigProperties"
+    },
+    {
+      "name": "upload.oss.url",
+      "type": "java.lang.String",
+      "sourceType": "com.boke.config.properties.OssConfigProperties"
+    }
+  ],
+  "hints": []
+}
