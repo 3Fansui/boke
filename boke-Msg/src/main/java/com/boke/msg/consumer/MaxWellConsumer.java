@@ -1,4 +1,4 @@
-package com.boke.consumer;
+package com.boke.msg.consumer;
 
 import com.alibaba.fastjson.JSON;
 import com.boke.model.dto.ArticleSearchDTO;

@@ -1,6 +1,7 @@
 package com.boke.controller;
 
 import com.boke.annotation.OptLog;
+import com.boke.db.entity.UserInfo;
 import com.boke.model.dto.PageResultDTO;
 import com.boke.model.dto.UserInfoDTO;
 import com.boke.model.dto.UserOnlineDTO;
@@ -14,6 +15,8 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.Valid;
+
+import java.util.List;
 
 import static com.boke.constant.OptTypeConstant.DELETE;
 import static com.boke.constant.OptTypeConstant.UPDATE;
@@ -92,5 +95,9 @@ public class UserInfoController {
     public ResultVO<UserInfoDTO> getUserInfoById(@PathVariable("userInfoId") Integer userInfoId) {
         return ResultVO.ok(userInfoService.getUserInfoById(userInfoId));
     }
-
+    @ApiOperation("获取已订阅的用户信息")
+    @GetMapping("/users/subscribe")
+    public ResultVO<List<UserInfo>>getUserSubscribe() {
+        return ResultVO.ok(userInfoService.getUserSubscribe());
+    }
 }

@@ -1,4 +1,4 @@
-package com.boke.listener;
+package com.boke.msg.listener;
 
 import com.boke.db.entity.ExceptionLog;
 import com.boke.db.entity.OperationLog;
