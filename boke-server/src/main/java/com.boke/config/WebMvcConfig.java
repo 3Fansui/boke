@@ -11,10 +11,8 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @Configuration
 public class WebMvcConfig implements WebMvcConfigurer {
-
     @Autowired
     private PaginationInterceptor paginationInterceptor;
-
     @Autowired
     private AccessLimitInterceptor accessLimitInterceptor;
 
@@ -23,7 +21,7 @@ public class WebMvcConfig implements WebMvcConfigurer {
         registry.addMapping("/**")
                 .allowCredentials(true)
                 .allowedHeaders("*")
-                .allowedOrigins("*")
+                .allowedOrigins("http://localhost:8082", "http://localhost:8081")
                 .allowedMethods("*");
     }
 

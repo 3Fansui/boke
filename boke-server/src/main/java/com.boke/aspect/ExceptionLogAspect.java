@@ -5,7 +5,8 @@ import com.boke.entity.ExceptionLog;
 import com.boke.event.ExceptionLogEvent;
 import com.boke.util.ExceptionUtil;
 import com.boke.util.IpUtil;
-import io.swagger.annotations.ApiOperation;
+import io.swagger.v3.oas.annotations.Operation;
+import jakarta.servlet.http.HttpServletRequest;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.AfterThrowing;
 import org.aspectj.lang.annotation.Aspect;
@@ -18,7 +19,7 @@ import org.springframework.web.context.request.RequestAttributes;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.multipart.MultipartFile;
 
-import javax.servlet.http.HttpServletRequest;
+
 import java.lang.reflect.Method;
 import java.util.Objects;
 
@@ -40,7 +41,7 @@ public class ExceptionLogAspect {
         ExceptionLog exceptionLog = new ExceptionLog();
         MethodSignature signature = (MethodSignature) joinPoint.getSignature();
         Method method = signature.getMethod();
-        ApiOperation apiOperation = method.getAnnotation(ApiOperation.class);
+        Operation apiOperation = method.getAnnotation(Operation.class);
         exceptionLog.setOptUri(Objects.requireNonNull(request).getRequestURI());
         String className = joinPoint.getTarget().getClass().getName();
         String methodName = method.getName();
@@ -55,7 +56,7 @@ public class ExceptionLogAspect {
             }
         }
         if (Objects.nonNull(apiOperation)) {
-            exceptionLog.setOptDesc(apiOperation.value());
+            exceptionLog.setOptDesc(apiOperation.description());
         } else {
             exceptionLog.setOptDesc("");
         }

@@ -8,24 +8,31 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.access.AccessDecisionManager;
 import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.config.annotation.ObjectPostProcessor;
+import org.springframework.security.authentication.ProviderManager;
+import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
+import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+
+import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.config.http.SessionCreationPolicy;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.AuthenticationEntryPoint;
+import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.access.AccessDeniedHandler;
 import org.springframework.security.web.access.intercept.FilterInvocationSecurityMetadataSource;
-import org.springframework.security.web.access.intercept.FilterSecurityInterceptor;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 @Configuration
 @EnableWebSecurity
-public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
+@EnableMethodSecurity()
+public class WebSecurityConfig {
+    @Autowired
+    private UserDetailsService userDetailsService;
 
     @Autowired
     private AuthenticationEntryPoint authenticationEntryPoint;
@@ -53,9 +60,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     @Bean
-    @Override
     public AuthenticationManager authenticationManagerBean() throws Exception {
-        return super.authenticationManagerBean();
+        DaoAuthenticationProvider daoAuthenticationProvider = new DaoAuthenticationProvider();
+        daoAuthenticationProvider.setUserDetailsService(userDetailsService);
+        daoAuthenticationProvider.setPasswordEncoder(passwordEncoder());
+        return new ProviderManager(daoAuthenticationProvider);
     }
 
     @Bean
@@ -63,13 +72,33 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         return new BCryptPasswordEncoder();
     }
 
-    @Override
-    protected void configure(HttpSecurity http) throws Exception {
-        http.formLogin()
-                .loginProcessingUrl("/users/login")
-                .successHandler(authenticationSuccessHandler)
-                .failureHandler(authenticationFailureHandler);
-        http.authorizeRequests()
+    @Bean
+    protected SecurityFilterChain configure(HttpSecurity http) throws Exception {
+        return http.csrf(AbstractHttpConfigurer::disable)
+                .cors(AbstractHttpConfigurer::disable)
+                .formLogin(t -> {
+                    t.loginPage("/users/login")
+                            .usernameParameter("username")
+                            .passwordParameter("password")
+                            .loginProcessingUrl("/users/login")
+                            .successHandler(authenticationSuccessHandler)
+                            .failureHandler(authenticationFailureHandler);
+                })
+                .authenticationManager(authenticationManagerBean())
+                .authorizeHttpRequests(t -> {
+                    t.anyRequest().permitAll();
+                })
+                .exceptionHandling(t -> {
+                    t.accessDeniedHandler(accessDeniedHandler)
+                            .authenticationEntryPoint(authenticationEntryPoint);
+                })
+                .sessionManagement(t -> {
+                    t.sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+                })
+                .addFilterBefore(jwtAuthenticationTokenFilter, UsernamePasswordAuthenticationFilter.class)
+                .build();
+
+       /* http.authorizeRequests()
                 .withObjectPostProcessor(new ObjectPostProcessor<FilterSecurityInterceptor>() {
                     @Override
                     public <O extends FilterSecurityInterceptor> O postProcess(O fsi) {
@@ -86,7 +115,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .sessionManagement()
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
-        http.addFilterBefore(jwtAuthenticationTokenFilter, UsernamePasswordAuthenticationFilter.class);
+        http.addFilterBefore(jwtAuthenticationTokenFilter, UsernamePasswordAuthenticationFilter.class);*/
     }
 
 }

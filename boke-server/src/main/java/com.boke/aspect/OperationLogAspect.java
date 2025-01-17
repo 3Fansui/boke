@@ -7,8 +7,9 @@ import com.boke.event.OperationLogEvent;
 import com.boke.util.IpUtil;
 
 import com.boke.util.UserUtil;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.servlet.http.HttpServletRequest;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.AfterReturning;
 import org.aspectj.lang.annotation.Aspect;
@@ -20,8 +21,6 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.context.request.RequestAttributes;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.multipart.MultipartFile;
-
-import javax.servlet.http.HttpServletRequest;
 import java.lang.reflect.Method;
 import java.util.Objects;
 
@@ -44,12 +43,12 @@ public class OperationLogAspect {
         OperationLog operationLog = new OperationLog();
         MethodSignature signature = (MethodSignature) joinPoint.getSignature();
         Method method = signature.getMethod();
-        Api api = (Api) signature.getDeclaringType().getAnnotation(Api.class);
-        ApiOperation apiOperation = method.getAnnotation(ApiOperation.class);
+        Tag api = (Tag) signature.getDeclaringType().getAnnotation(Tag.class);
+        Operation apiOperation = method.getAnnotation(Operation.class);
         OptLog optLog = method.getAnnotation(OptLog.class);
-        operationLog.setOptModule(api.tags()[0]);
+        operationLog.setOptModule(api.name());
         operationLog.setOptType(optLog.optType());
-        operationLog.setOptDesc(apiOperation.value());
+        operationLog.setOptDesc(apiOperation.description());
         String className = joinPoint.getTarget().getClass().getName();
         String methodName = method.getName();
         methodName = className + "." + methodName;

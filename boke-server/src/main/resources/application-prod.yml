@@ -7,7 +7,7 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://127.0.0.1:3306/aurora?serverTimezone=Asia/Shanghai&allowMultiQueries=true
     username: root
-    password: 246810
+    password:
     hikari:
       minimum-idle: 10
       idle-timeout: 180000
@@ -17,24 +17,24 @@ spring:
       max-lifetime: 60000
       connection-timeout: 30000
       connection-test-query: SELECT 1
-
-  redis:
-    host: 117.72.14.87
-    port: 6477
-    password: Y_XqG2x>66xTQHtb6ZNTaB^x
-    database: 0
-    lettuce:
-      pool:
-        min-idle: 10
-        max-idle: 100
-        max-active: 100
-        max-wait: 10000
+  data:
+    redis:
+      host:
+      port: 6477
+      password:
+      database: 0
+      lettuce:
+        pool:
+          min-idle: 10
+          max-idle: 100
+          max-active: 100
+          max-wait: 10000
 
   rabbitmq:
-    host: 117.72.14.87
+    host:
     port: 5672
     username: blog
-    password: N3Qvz2oULujkkx
+    password:
     listener:
       simple:
         retry:
@@ -42,11 +42,10 @@ spring:
           max-attempts: 3
           initial-interval: 3000
 
-  elasticsearch:
-    rest:
-      uris: 117.72.14.87:9200
-      password: 3m3a56BDbUNufQQ
-      username: elastic
+#  elasticsearch:
+#      uris: 117.72.14.87:9200
+#      password: 3m3a56BDbUNufQQ
+#      username: elastic
 
 
   mail:
@@ -75,13 +74,13 @@ spring:
       max-request-size: 100MB
 
 mybatis-plus:
-  mapper-locations: classpath:mapper/*.xml
+  mapper-locations: classpath:/mapper/**/*.xml
   configuration:
-    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+#    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
     map-underscore-to-camel-case: true
 
 jwt:
-  secret: boke
+  secret: bokebokebokebokebokebokeboke555bokebokebokebokebokebokeboke555bokebokebokebokebokebokeboke555bokebokebokebokebokebokeboke555bokebokebokebokebokebokeboke555bokebokebokebokebokebokeboke555bokebokebokebokebokebokeboke555ebokeboke555ebokeboke555ebokeboke555222
 
 search:
   mode: elasticsearch
@@ -95,10 +94,10 @@ upload:
     accessKeySecret: OSS配置accessKeySecret
     bucketName: OSS配置bucketName
   minio:
-    url: http://117.72.14.87:9415/
-    endpoint: http://117.72.14.87:9415
-    accesskey: mQt3qRFnc2hyYZFAYLTg
-    secretKey: ECoMFDL5iAkIOJPVFgKoigJ2gpsiKGKHs9b4otjD
+    url:
+    endpoint:
+    accesskey:
+    secretKey:
     bucketName: blog
 
 website:
@@ -108,3 +107,7 @@ qq:
   app-id: QQ APPID
   check-token-url: https://graph.qq.com/oauth2.0/me?access_token={access_token}
   user-info-url: https://graph.qq.com/user/get_user_info?openid={openid}&access_token={access_token}&oauth_consumer_key={oauth_consumer_key}
+
+es:
+  serverUrl:
+  apiKey:

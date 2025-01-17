@@ -1,5 +1,0 @@
-spring:
-  application:
-    name: boke
-  profiles:
-    active: prod

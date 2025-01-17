@@ -6,6 +6,8 @@ import com.boke.annotation.AccessLimit;
 import com.boke.model.vo.ResultVO;
 import com.boke.service.RedisService;
 import com.boke.util.IpUtil;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.RedisConnectionFailureException;
@@ -13,8 +15,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.HandlerInterceptor;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+
 import java.io.OutputStream;
 import java.nio.charset.StandardCharsets;
 
