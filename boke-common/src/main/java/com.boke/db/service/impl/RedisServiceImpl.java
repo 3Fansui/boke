@@ -22,6 +22,85 @@ import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
 
+/**
+ * Redis服务实现类
+ *
+ *  封装了Redis的各种数据类型操作，包括：
+ *  * - String（字符串）
+ *  * - Hash（哈希）
+ *  * - List（列表）
+ *  * - Set（集合）
+ *  * - ZSet（有序集合）
+ *  * - Geo（地理位置）
+ *  * - HyperLogLog（基数统计）
+ *  * - Bitmap（位图）
+ *
+ * set(key, value, time) - 设置带过期时间的缓存
+ * set(key, value) - 设置永久缓存
+ * get(key) - 获取缓存值
+ * del(key) - 删除单个缓存
+ * del(keys) - 批量删除缓存
+ * expire(key, time) - 设置过期时间
+ * getExpire(key) - 获取过期时间
+ * hasKey(key) - 判断key是否存在
+ *
+ * incr(key, delta) - 递增
+ * incrExpire(key, time) - 递增并设置过期时间
+ * decr(key, delta) - 递减
+ *
+ * hGet(key, hashKey) - 获取Hash中的数据
+ * hSet(key, hashKey, value, time) - 设置Hash数据带过期时间
+ * hSet(key, hashKey, value) - 设置Hash数据
+ * hGetAll(key) - 获取所有Hash数据
+ * hSetAll(key, map, time) - 设置多个Hash数据带过期时间
+ * hSetAll(key, map) - 设置多个Hash数据
+ * hDel(key, hashKey) - 删除Hash数据
+ * hHasKey(key, hashKey) - 判断Hash数据是否存在
+ * hIncr(key, hashKey, delta) - Hash递增
+ * hDecr(key, hashKey, delta) - Hash递减
+ *
+ * zIncr(key, value, score) - 增加分数
+ * zDecr(key, value, score) - 减少分数
+ * zReverseRangeWithScore(key, start, end) - 获取指定范围的有序集合（带分数）
+ * zScore(key, value) - 获取分数
+ * zAllScore(key) - 获取所有分数
+ *
+ * sMembers(key) - 获取集合所有成员
+ * sAdd(key, values) - 添加集合成员
+ * sAddExpire(key, time, values) - 添加集合成员并设置过期时间
+ * sIsMember(key, value) - 判断是否为集合成员
+ * sSize(key) - 获取集合大小
+ * sRemove(key, values) - 移除集合成员
+ *
+ * lRange(key, start, end) - 获取列表指定范围的元素
+ * lSize(key) - 获取列表长度
+ * lIndex(key, index) - 获取指定索引的元素
+ * lPush(key, value) - 从右侧推入元素
+ * lPush(key, value, time) - 从右侧推入元素并设置过期时间
+ * lPushAll(key, values) - 从右侧推入多个元素
+ * lPushAll(key, time, values) - 从右侧推入多个元素并设置过期时间
+ * lRemove(key, count, value) - 删除列表元素
+ *
+ * bitAdd(key, offset, b) - 设置位图的值
+ * bitGet(key, offset) - 获取位图的值
+ * bitCount(key) - 获取位图中值为1的个数
+ * bitField(key, limit, offset) - 获取位图指定范围的值
+ * bitGetAll(key) - 获取位图的所有值
+ *
+ * hyperAdd(key, value) - 添加数据
+ * hyperGet(key) - 统计数据
+ * hyperDel(key) - 删除数据
+ *
+ * geoAdd(key, x, y, name) - 添加地理位置
+ * geoGetPointList(key, place) - 获取地理位置
+ * geoCalculationDistance(key, placeOne, placeTow) - 计算两个位置之间的距离
+ * geoNearByPlace(key, place, distance, limit, sort) - 查询指定范围内的位置
+ * geoGetHash(key, place) - 获取地理位置的geohash值
+ *
+ * @author boke
+ * @since 1.0
+ */
+
 @Service
 @SuppressWarnings("all")
 public class RedisServiceImpl implements RedisService {

@@ -32,7 +32,7 @@ import static com.boke.constant.CommonConstant.UNKNOWN;
 import static com.boke.constant.RedisConstant.*;
 
 @Slf4j
-@Component("auroraQuartz")
+@Component("bokeQuartz")
 public class bokeQuartz {
 
     @Autowired
