@@ -1,0 +1,5 @@
+com\boke\consumer\CommentNoticeConsumer.class
+com\boke\consumer\MaxWellConsumer.class
+com\boke\consumer\SubscribeConsumer.class
+com\boke\MsgApplication.class
+com\boke\listener\bokeListener.class
