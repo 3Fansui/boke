@@ -23,7 +23,7 @@ import javax.validation.Valid;
 import static com.boke.constant.OptTypeConstant.UPDATE;
 import static com.boke.constant.OptTypeConstant.UPLOAD;
 
-@Api(tags = "aurora信息")
+@Api(tags = "boke信息")
 @RestController
 public class bokeInfoController {
 
