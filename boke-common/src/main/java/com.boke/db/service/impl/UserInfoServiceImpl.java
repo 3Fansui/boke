@@ -32,6 +32,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.util.*;
 import java.util.stream.Collectors;
 
+import static com.boke.constant.CommonConstant.TRUE;
 import static com.boke.util.PageUtil.getLimitCurrent;
 import static com.boke.util.PageUtil.getSize;
 
@@ -171,6 +172,13 @@ public class UserInfoServiceImpl extends ServiceImpl<UserInfoMapper, UserInfo> i
     public UserInfoDTO getUserInfoById(Integer id) {
         UserInfo userInfo = userInfoMapper.selectById(id);
         return BeanCopyUtil.copyObject(userInfo, UserInfoDTO.class);
+    }
+
+    @Override
+    public List<UserInfo> getUserSubscribe() {
+        LambdaQueryWrapper<UserInfo> queryWrapper = new LambdaQueryWrapper();
+        queryWrapper.eq(UserInfo::getIsSubscribe, TRUE);
+        return userInfoMapper.selectList(queryWrapper);
     }
 
 }

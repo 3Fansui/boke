@@ -5,9 +5,9 @@ spring:
   datasource:
     type: com.zaxxer.hikari.HikariDataSource
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://127.0.0.1:3306/junjie?serverTimezone=Asia/Shanghai&allowMultiQueries=true
+    url: jdbc:mysql://127.0.0.1:3306/aurora?serverTimezone=Asia/Shanghai&allowMultiQueries=true
     username: root
-    password: 123456
+    password: 246810
     hikari:
       minimum-idle: 10
       idle-timeout: 180000
@@ -19,9 +19,9 @@ spring:
       connection-test-query: SELECT 1
 
   redis:
-    host: 192.168.64.100
-    port: 6379
-    password:
+    host: 117.72.14.87
+    port: 6477
+    password: Y_XqG2x>66xTQHtb6ZNTaB^x
     database: 0
     lettuce:
       pool:
@@ -31,10 +31,10 @@ spring:
         max-wait: 10000
 
   rabbitmq:
-    host: 192.168.64.100
+    host: 117.72.14.87
     port: 5672
-    username: guest
-    password: guest
+    username: blog
+    password: N3Qvz2oULujkkx
     listener:
       simple:
         retry:
@@ -44,8 +44,8 @@ spring:
 
   elasticsearch:
     rest:
-      uris: 192.168.64.100:9200
-      password:
+      uris: 117.72.14.87:9200
+      password: 3m3a56BDbUNufQQ
       username: elastic
 
 

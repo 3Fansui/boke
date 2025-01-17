@@ -1,4 +1,4 @@
-package com.boke.util;
+package com.boke.msg.util;
 
 
 import com.boke.model.dto.EmailDTO;
