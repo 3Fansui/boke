@@ -32,6 +32,7 @@ public class JwtAuthenticationTokenFilter extends OncePerRequestFilter {
     @SneakyThrows
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) {
+        //System.out.println("请求："+request.getRequestURI());
         UserDetailsDTO userDetailsDTO = tokenService.getUserDetailDTO(request);
         if (Objects.nonNull(userDetailsDTO) && Objects.isNull(UserUtil.getAuthentication())) {
             tokenService.renewToken(userDetailsDTO);

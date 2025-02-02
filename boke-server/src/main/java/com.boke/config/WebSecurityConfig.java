@@ -1,11 +1,22 @@
 package com.boke.config;
 
 import com.boke.filter.JwtAuthenticationTokenFilter;
+import com.boke.filter.gitee.GiteeApiClient;
+import com.boke.filter.gitee.GiteeAuthenticationFilter;
+import com.boke.filter.gitee.GiteeAuthenticationProvider;
 import com.boke.handler.AccessDecisionManagerImpl;
 import com.boke.handler.FilterInvocationSecurityMetadataSourceImpl;
+import com.boke.mapper.UserAuthMapper;
+import com.boke.mapper.UserInfoMapper;
+import com.boke.mapper.UserRoleMapper;
+import com.boke.service.TokenService;
+import com.boke.service.impl.UserDetailServiceImpl;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.access.AccessDecisionManager;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.ProviderManager;
@@ -26,6 +37,9 @@ import org.springframework.security.web.access.intercept.FilterInvocationSecurit
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
+
+import java.util.List;
 
 @Configuration
 @EnableWebSecurity
@@ -48,7 +62,20 @@ public class WebSecurityConfig {
 
     @Autowired
     private JwtAuthenticationTokenFilter jwtAuthenticationTokenFilter;
-
+    @Autowired
+    private TokenService tokenService;
+    @Autowired
+    private ObjectMapper objectMapper;
+    @Autowired
+    private UserAuthMapper userAuthMapper;
+    @Autowired
+    private UserInfoMapper userInfoMapper;
+    @Autowired
+    private UserRoleMapper userRoleMapper;
+    @Autowired
+    private UserDetailServiceImpl userDetailService;
+    @Autowired
+    private GiteeApiClient giteeApiClient;
     @Bean
     public FilterInvocationSecurityMetadataSource securityMetadataSource() {
         return new FilterInvocationSecurityMetadataSourceImpl();
@@ -73,7 +100,7 @@ public class WebSecurityConfig {
     }
 
     @Bean
-    protected SecurityFilterChain configure(HttpSecurity http) throws Exception {
+    protected SecurityFilterChain configure(HttpSecurity http,HttpServletRequest request) throws Exception {
         return http.csrf(AbstractHttpConfigurer::disable)
                 .cors(AbstractHttpConfigurer::disable)
                 .formLogin(t -> {
@@ -96,6 +123,7 @@ public class WebSecurityConfig {
                     t.sessionCreationPolicy(SessionCreationPolicy.STATELESS);
                 })
                 .addFilterBefore(jwtAuthenticationTokenFilter, UsernamePasswordAuthenticationFilter.class)
+                .addFilterBefore(gitee(request), UsernamePasswordAuthenticationFilter.class)
                 .build();
 
        /* http.authorizeRequests()
@@ -116,6 +144,17 @@ public class WebSecurityConfig {
                 .sessionManagement()
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
         http.addFilterBefore(jwtAuthenticationTokenFilter, UsernamePasswordAuthenticationFilter.class);*/
+    }
+    @Bean
+    public GiteeAuthenticationFilter gitee(HttpServletRequest request) {
+        GiteeAuthenticationProvider provider = new GiteeAuthenticationProvider(userAuthMapper, userInfoMapper, userRoleMapper, userDetailService, request,giteeApiClient);
+        GiteeAuthenticationFilter giteeFilter = new GiteeAuthenticationFilter(
+                new AntPathRequestMatcher("/users/login/gitee", HttpMethod.POST.name()),
+                new ProviderManager(provider),
+                authenticationSuccessHandler,
+                authenticationFailureHandler, tokenService,objectMapper);
+        return giteeFilter;
+
     }
 
 }

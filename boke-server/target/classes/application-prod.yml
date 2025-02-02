@@ -6,8 +6,8 @@ spring:
     type: com.zaxxer.hikari.HikariDataSource
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://127.0.0.1:3306/aurora?serverTimezone=Asia/Shanghai&allowMultiQueries=true
-    username: # your_database_username
-    password: # your_database_password
+    username: root
+    password: 246810
     hikari:
       minimum-idle: 10
       idle-timeout: 180000
@@ -17,24 +17,24 @@ spring:
       max-lifetime: 60000
       connection-timeout: 30000
       connection-test-query: SELECT 1
-
-  redis:
-    host: # your_redis_host
-    port: 6477
-    password: # your_redis_password
-    database: 0
-    lettuce:
-      pool:
-        min-idle: 10
-        max-idle: 100
-        max-active: 100
-        max-wait: 10000
+  data:
+    redis:
+      host: 117.72.14.87
+      port: 6477
+      password: Y_XqG2x>66xTQHtb6ZNTaB^x
+      database: 0
+      lettuce:
+        pool:
+          min-idle: 10
+          max-idle: 100
+          max-active: 100
+          max-wait: 10000
 
   rabbitmq:
-    host: # your_rabbitmq_host
+    host: 117.72.14.87
     port: 5672
-    username: # your_rabbitmq_username
-    password: # your_rabbitmq_password
+    username: blog
+    password: N3Qvz2oULujkkx
     listener:
       simple:
         retry:
@@ -42,16 +42,16 @@ spring:
           max-attempts: 3
           initial-interval: 3000
 
-  elasticsearch:
-    rest:
-      uris: # your_elasticsearch_host
-      password: # your_elasticsearch_password
-      username: # your_elasticsearch_username
+#  elasticsearch:
+#      uris: 117.72.14.87:9200
+#      password: 3m3a56BDbUNufQQ
+#      username: elastic
+
 
   mail:
     host: smtp.qq.com
-    username: # your_email
-    password: # your_email_authorization_code
+    username: 3487393070@qq.com
+    password: uolitraieemacjdb # 授权码
     default-encoding: UTF-8
     protocol: smtp
     port: 465
@@ -74,13 +74,13 @@ spring:
       max-request-size: 100MB
 
 mybatis-plus:
-  mapper-locations: classpath:mapper/*.xml
+  mapper-locations: classpath:/mapper/**/*.xml
   configuration:
-    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+#    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
     map-underscore-to-camel-case: true
 
 jwt:
-  secret: # your_jwt_secret
+  secret: bokebokebokebokebokebokeboke555bokebokebokebokebokebokeboke555bokebokebokebokebokebokeboke555bokebokebokebokebokebokeboke555bokebokebokebokebokebokeboke555bokebokebokebokebokebokeboke555bokebokebokebokebokebokeboke555ebokeboke555ebokeboke555ebokeboke555222
 
 search:
   mode: elasticsearch
@@ -88,22 +88,33 @@ search:
 upload:
   mode: minio
   oss:
-    url: # your_bucket_url
-    endpoint: # your_oss_endpoint
-    accessKeyId: # your_oss_accessKeyId
-    accessKeySecret: # your_oss_accessKeySecret
-    bucketName: # your_oss_bucketName
+    url: http://Bucket域名/
+    endpoint: OSS配置endpoint
+    accessKeyId: OSS配置accessKeyId
+    accessKeySecret: OSS配置accessKeySecret
+    bucketName: OSS配置bucketName
   minio:
-    url: # your_minio_url
-    endpoint: # your_minio_endpoint
-    accesskey: # your_minio_accesskey
-    secretKey: # your_minio_secretKey
+    url: http://117.72.14.87:9415/
+    endpoint: http://117.72.14.87:9415
+    accesskey: mQt3qRFnc2hyYZFAYLTg
+    secretKey: ECoMFDL5iAkIOJPVFgKoigJ2gpsiKGKHs9b4otjD
     bucketName: blog
 
 website:
-  url: # your_website_url
+  url: http://127.0.0.1
 
 qq:
-  app-id: # your_qq_app_id
+  app-id: QQ APPID
   check-token-url: https://graph.qq.com/oauth2.0/me?access_token={access_token}
   user-info-url: https://graph.qq.com/user/get_user_info?openid={openid}&access_token={access_token}&oauth_consumer_key={oauth_consumer_key}
+
+es:
+  serverUrl: http://117.72.14.87:9200
+  apiKey: eDRMU2FKUUJoTVV3cGlKVEtwZTY6RzBfdEFBb0JTb3lFUzcwMldvVWdudw==
+
+
+login:
+  gitee:
+    clientId: "a40d6cc1324eb76b38cfcec264dcee5e754f22e9c4e7113b6f44782fead10668"
+    clientSecret: "5ea27f480a66dc3fbdcfc92e544ffbe81a44d811d61192ac5ddd853c546d573d"
+    redirectUri: "http://localhost:8081"

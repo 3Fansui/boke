@@ -20,7 +20,7 @@ spring:
   data:
     redis:
       host:
-      port: 6477
+      port:
       password:
       database: 0
       lettuce:
@@ -32,8 +32,8 @@ spring:
 
   rabbitmq:
     host:
-    port: 5672
-    username: blog
+    port:
+    username:
     password:
     listener:
       simple:
@@ -50,8 +50,8 @@ spring:
 
   mail:
     host: smtp.qq.com
-    username: 3487393070@qq.com
-    password: uolitraieemacjdb # 授权码
+    username:
+    password:
     default-encoding: UTF-8
     protocol: smtp
     port: 465
@@ -111,3 +111,9 @@ qq:
 es:
   serverUrl:
   apiKey:
+
+login:
+  gitee:
+    clientId:
+    clientSecret:
+    redirectUri: "http://localhost:8081"  # 回调地址：登录成功后的页面

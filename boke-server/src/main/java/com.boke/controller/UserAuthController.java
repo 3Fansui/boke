@@ -11,14 +11,23 @@ import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import static com.boke.constant.OptTypeConstant.UPDATE;
 
 @Tag(name =  "用户账号模块")
 @RestController
 public class UserAuthController {
+    @Value("${login.gitee.clientId}")
+    private String clientId;
+
+    @Value("${login.gitee.redirectUri}")
+    private String redirectUri;
 
     @Autowired
     private UserAuthService userAuthService;
@@ -77,6 +86,19 @@ public class UserAuthController {
     @PostMapping("/users/oauth/qq")
     public ResultVO<UserInfoDTO> qqLogin(@Valid @RequestBody QQLoginVO qqLoginVO) {
         return ResultVO.ok(userAuthService.qqLogin(qqLoginVO));
+    }
+    @Operation(summary = "gitee配置参数获取")
+    @GetMapping ("/users/login/gitee/config")
+    public ResultVO<Map> GiteeConfig() {
+        Map map = new HashMap();
+        map.put("clientId",clientId);
+        map.put("redirectUri",redirectUri);
+        return ResultVO.ok(map);
+    }
+    @Operation(summary = "gitee登录")
+    @PostMapping ("/users/login/gitee")
+    public void GiteeLogin() {
+
     }
 
 }
